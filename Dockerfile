@@ -5,7 +5,7 @@ FROM node:22-alpine
 WORKDIR /app
 
 # 의존성만 먼저 복사·설치 (빌드 캐시 활용)
-COPY package-lock.json ./
+COPY package*.json ./
 RUN npm ci
 
 # 소스 복사 및 빌드
@@ -13,7 +13,7 @@ COPY . .
 RUN npm run build
 
 # 런타임 포트
-EXPOSE 3002
+EXPOSE ${PORT}
 
 # 프로덕션 서버 실행
 CMD ["npm", "start"]
