@@ -71,5 +71,8 @@ jobs:
             # stop & remove old
             docker stop front-app || true
             docker rm   front-app || true
+
             # run new
             docker compose up -d
+            # prune old images
+            docker image prune -a -f
