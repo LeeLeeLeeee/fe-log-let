@@ -5,8 +5,8 @@ FROM node:22-alpine
 WORKDIR /app
 
 # 의존성만 먼저 복사·설치 (빌드 캐시 활용)
-COPY package*.json ./
-RUN npm install --production
+COPY package-lock.json ./
+RUN npm ci
 
 # 소스 복사 및 빌드
 COPY . .
