@@ -73,6 +73,4 @@ jobs:
             docker rm   front-app || true
 
             # run new
-            docker compose up -d
-            # prune old images
-            docker image prune -a -f
+            docker compose up -d --wait && docker image prune -a -f
