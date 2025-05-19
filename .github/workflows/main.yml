@@ -1,7 +1,7 @@
 name: Deploy to DigitalOcean Droplet
 on:
   push:
-    branches: [ main ] 
+    branches: [main]
 
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-          
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -36,14 +36,12 @@ jobs:
           IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/fe-log-let:${{ env.GITHUB_SHA }}
           docker push $IMAGE_NAME
 
-      
-        
   deploy:
     name: Deploy to Droplet
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 
+      - uses: actions/checkout@v4
       - name: Copy docker-compose.yml file to Droplet
         uses: appleboy/scp-action@master
         with:
@@ -52,7 +50,7 @@ jobs:
           key: ${{ env.KEY }}
           source: "docker-compose.yml"
           target: "~/fe-log-let/"
-          
+
       - name: SSH & Deploy
         uses: appleboy/ssh-action@master
         with:
