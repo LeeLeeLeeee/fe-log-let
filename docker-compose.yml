@@ -1,5 +1,9 @@
 version: "3.8"
 
+networks:
+  internal:
+    driver: bridge
+
 services:
   front-app:
     container_name: front-app
