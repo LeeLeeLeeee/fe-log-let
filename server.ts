@@ -7,7 +7,7 @@ dotenv.config();
 const port = parseInt(process.env.PORT || "3000", 10);
 const dev = process.env.NODE_ENV !== "production";
 
-const nextApp = next({ dev, port });
+const nextApp = next({ dev, port, hostname: "0.0.0.0" });
 const handle = nextApp.getRequestHandler();
 
 async function main() {
@@ -24,9 +24,7 @@ async function main() {
 
     // 서버 시작
     app.listen(port, () => {
-      console.log(
-        `> Ready on ${nextApp.options.hostname}:${nextApp.options.port}`
-      );
+      console.log(`> Ready on 0.0.0.0:${nextApp.options.port}`);
     });
   } catch (err) {
     console.error("Error starting server:", err);
