@@ -1,6 +1,7 @@
 import express from "express";
 import next from "next";
 import dotenv from "dotenv";
+import compression from "compression";
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ async function main() {
     await nextApp.prepare();
 
     const app = express();
-    // app.use(compression());
+    app.use(compression());
 
     // Next.js 요청 핸들러
     app.all(/(.*)/, (req, res) => {
