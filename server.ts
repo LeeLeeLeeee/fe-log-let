@@ -17,12 +17,15 @@ async function main() {
 
     // Next.js 요청 핸들러
     app.all(/(.*)/, (req, res) => {
+      console.log(req.url, "req.url", res.getHeaders(), "res.headers");
       return handle(req, res);
     });
 
     // 서버 시작
     app.listen(port, () => {
-      console.log(`> Ready on `);
+      console.log(
+        `> Ready on ${nextApp.options.hostname}:${nextApp.options.port}`
+      );
     });
   } catch (err) {
     console.error("Error starting server:", err);
