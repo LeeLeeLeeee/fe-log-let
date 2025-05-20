@@ -1,6 +1,7 @@
 import express from "express";
 import next from "next";
 import dotenv from "dotenv";
+import compression from "compression";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ async function main() {
     await nextApp.prepare();
 
     const app = express();
+    app.use(compression());
 
     // Next.js 요청 핸들러
     app.all(/(.*)/, (req, res) => {
@@ -24,7 +26,9 @@ async function main() {
 
     // 서버 시작
     app.listen(port, () => {
-      console.log(`> Ready on 0.0.0.0:${nextApp.options.port}`);
+      console.log(
+        `> Ready on ${nextApp.options.hostname}:${nextApp.options.port}`
+      );
     });
   } catch (err) {
     console.error("Error starting server:", err);

@@ -21,7 +21,7 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.front-app.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.front-app.rule=PathPrefix(`/app`)"
       - "traefik.http.routers.front-app.entrypoints=web"
       - "traefik.http.services.front-app.loadbalancer.server.port=${PORT}"
     expose:
