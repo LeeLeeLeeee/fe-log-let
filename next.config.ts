@@ -1,8 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  compress: true,
-  basePath: "/app",
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

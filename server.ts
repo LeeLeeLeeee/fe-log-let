@@ -13,6 +13,7 @@ const handle = nextApp.getRequestHandler();
 async function main() {
   try {
     await nextApp.prepare();
+
     const app = express();
 
     // Next.js 요청 핸들러
